@@ -22,4 +22,21 @@
  * PrestaShop is an internationally registered trademark & property of PrestaShop SA
 *}
 
-{$content}
+<script type="text/javascript">
+  $(document).ready(function () {
+    toggleVoucherType();
+    $('input[name=discount_type]').click(function () {
+      toggleVoucherType();
+    });
+  });
+
+  function toggleVoucherType() {
+    if (parseInt($('input[name=discount_type]:checked').val(), 10) === 2) {
+      $('#discount_value_percentage').closest('.row').hide();
+      $('#discount_value').closest('.row').show();
+    } else {
+      $('#discount_value_percentage').closest('.row').show();
+      $('#discount_value').closest('.row').hide();
+    }
+  }
+</script>
