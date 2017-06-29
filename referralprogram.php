@@ -48,7 +48,7 @@ class ReferralProgram extends Module
     {
         $this->name = 'referralprogram';
         $this->tab = 'advertising_marketing';
-        $this->version = '2.0.1';
+        $this->version = '2.0.2';
         $this->author = 'thirty bees';
 
         $this->controllers = ['program'];
@@ -590,11 +590,14 @@ class ReferralProgram extends Module
     {
         include_once(dirname(__FILE__).'/ReferralProgramModule.php');
 
-        if (Configuration::get('PS_CIPHER_ALGORITHM')) {
+        if ((int) Configuration::get('PS_CIPHER_ALGORITHM') === 1 && defined('_RIJNDAEL_KEY_')) {
             $cipherTool = new Rijndael(_RIJNDAEL_KEY_, _RIJNDAEL_IV_);
+        } elseif ((int) Configuration::get('PS_CIPHER_ALGORITHM') === 2 && defined('_PHP_ENCRYPTION_KEY_')) {
+            $cipherTool = new PhpEncryption(_PHP_ENCRYPTION_KEY_);
         } else {
             $cipherTool = new Blowfish(_COOKIE_KEY_, _COOKIE_IV_);
         }
+
         $explodeResult = explode('|', $cipherTool->decrypt(Tools::getValue('sponsor')));
         if ($explodeResult
             && count($explodeResult) > 1
