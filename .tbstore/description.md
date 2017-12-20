@@ -1,0 +1,1 @@
+The referral program module allows you to setup a referral program on your site to reward people for refferring paying customers to your site for purchases.
