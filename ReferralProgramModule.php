@@ -134,7 +134,7 @@ class ReferralProgramModule extends ObjectModel
             ->select('s.`'.bqSQL(static::$definition['primary']).'`')
             ->from(bqSQL(static::$definition['table']), 's')
             ->where('s.`id_sponsor` = '.(int) $idSponsor)
-            ->where('s.`'.bqSQL(static::$definition['table']).'` = '.(int) $idFriend)
+            ->where('s.`id_referralprogram` = '.(int) $idFriend)
         );
     }
 
