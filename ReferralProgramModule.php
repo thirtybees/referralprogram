@@ -79,7 +79,7 @@ class ReferralProgramModule extends ObjectModel
         $query = (new DbQuery())
             ->select('s.*')
             ->from(bqSQL(static::$definition['table']), 's')
-            ->where('s.`id_sponsor` - '.(int) $idCustomer);
+            ->where('s.`id_sponsor` = '.(int) $idCustomer);
         if ($restriction) {
             if ($restriction === 'pending') {
                 $query->where('s.`id_customer` = 0');
