@@ -3,11 +3,12 @@ compatible_versions: 1.0.0+
 author: thirty bees
 category: front office
 tags:
-  - refferal
-  - affiliate
-  - customer loyalty
+- refferal
+- affiliate
+- customer loyalty
+- referralprogram
 description_short: The Referral Program module allows you to set up a referral program on your site.
 description: description.md
 images:
-  - image-1.png
+- image-1.png
 license: AFL
