@@ -32,11 +32,11 @@
 
   function toggleVoucherType() {
     if (parseInt($('input[name=discount_type]:checked').val(), 10) === 2) {
-      $('#discount_value_percentage').closest('.row').hide();
-      $('#discount_value').closest('.row').show();
+      $('#discount_value_percentage').closest('.form-group').hide();
+      $('#discount_value').closest('.form-group').show();
     } else {
-      $('#discount_value_percentage').closest('.row').show();
-      $('#discount_value').closest('.row').hide();
+      $('#discount_value_percentage').closest('.form-group').show();
+      $('#discount_value').closest('.form-group').hide();
     }
   }
 </script>
