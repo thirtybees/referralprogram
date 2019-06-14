@@ -208,6 +208,7 @@ class ReferralProgramModule extends ObjectModel
         }
 
         $cartRule->cart_rule_restriction = !(int) $configurations['REFERRAL_DISCOUNT_CUMULATIVE'];
+        $cartRule->highlight = 1;
         $cartRule->quantity = 1;
         $cartRule->quantity_per_user = 1;
         $cartRule->date_from = date('Y-m-d H:i:s', time());
