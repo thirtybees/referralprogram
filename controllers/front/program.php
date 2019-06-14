@@ -121,11 +121,7 @@ class ReferralprogramProgramModuleFrontController extends ModuleFrontController
                             $error = 'name invalid';
                         } else {
                             if ($referralprogram->save()) {
-                                if (Configuration::get('PS_CIPHER_ALGORITHM')) {
-                                    $cipherTool = new Rijndael(_RIJNDAEL_KEY_, _RIJNDAEL_IV_);
-                                } else {
-                                    $cipherTool = new Blowfish(_COOKIE_KEY_, _COOKIE_IV_);
-                                }
+                                $cipherTool = Encryptor::getInstance();
                                 $vars = [
                                     '{email}'            => strval($this->context->customer->email),
                                     '{lastname}'         => strval($this->context->customer->lastname),
@@ -171,11 +167,7 @@ class ReferralprogramProgramModuleFrontController extends ModuleFrontController
             if (Tools::getValue('friendChecked') && sizeof($friendsChecked = Tools::getValue('friendChecked')) >= 1) {
                 foreach ($friendsChecked as $key => $friendChecked) {
                     if (ReferralProgramModule::isSponsorFriend((int) ($this->context->customer->id), (int) ($key))) {
-                        if (Configuration::get('PS_CIPHER_ALGORITHM')) {
-                            $cipherTool = new Rijndael(_RIJNDAEL_KEY_, _RIJNDAEL_IV_);
-                        } else {
-                            $cipherTool = new Blowfish(_COOKIE_KEY_, _COOKIE_IV_);
-                        }
+                        $cipherTool = Encryptor::getInstance();
                         $referralprogram = new ReferralProgramModule((int) ($key));
                         $vars = [
                             '{email}'            => $this->context->customer->email,
