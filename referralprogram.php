@@ -593,15 +593,9 @@ class ReferralProgram extends Module
         $cipherTool = Encryptor::getInstance();
 
         $explodeResult = explode('|', $cipherTool->decrypt(Tools::getValue('sponsor')));
-        if ($explodeResult
-            && count($explodeResult) > 1
-            && list($idReferralprogram) = $explodeResult
-            && isset($idReferralprogram)
-            && (int) $idReferralprogram
-            && !empty($email)
-            && Validate::isEmail($email) && $idReferralprogram == ReferralProgramModule::isEmailExists($email)
-        ) {
-            $referralprogram = new ReferralProgramModule($idReferralprogram);
+        if ($explodeResult) {
+            $idReferralprogram = (int)$explodeResult[0];
+            $referralprogram = new ReferralProgramModule((int)$idReferralprogram);
             if (Validate::isLoadedObject($referralprogram)) {
                 /* hack for display referralprogram information in form */
                 $_POST['customer_firstname'] = $referralprogram->firstname;
