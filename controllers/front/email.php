@@ -64,8 +64,9 @@ class ReferralprogramEmailModuleFrontController extends ModuleFrontController
             Tools::redirect('index.php');
         }
 
-        $file = file_get_contents($filePath);
+        $link = Context::getContext()->link->getPageLink('authentication', true, Context::getContext()->language->id, 'create_account=1', false);
 
+        $file = file_get_contents($filePath);
         $file = str_replace('{shop_name}', $shopName, $file);
         $file = str_replace('{shop_url}', $shopUrl.__PS_BASE_URI__, $file);
         $file = str_replace('{shop_logo}', $shopUrl._PS_IMG_.'logo.jpg', $file);
@@ -74,7 +75,7 @@ class ReferralprogramEmailModuleFrontController extends ModuleFrontController
         $file = str_replace('{email}', $customer->email, $file);
         $file = str_replace('{firstname_friend}', 'XXXXX', $file);
         $file = str_replace('{lastname_friend}', 'xxxxxx', $file);
-        $file = str_replace('{link}', 'authentication.php?create_account=1', $file);
+        $file = str_replace('{link}', $link, $file);
         $discountType = (int) (Configuration::get('REFERRAL_DISCOUNT_TYPE'));
         if ($discountType === ReferralProgram::DISCOUNT_PERCENT) {
             $file = str_replace('{discount}', ReferralProgram::formatDiscount((float) (Configuration::get('REFERRAL_PERCENTAGE')), $discountType, new Currency($this->context->currency->id)), $file);
