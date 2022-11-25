@@ -760,7 +760,7 @@ class ReferralProgram extends Module
             $sponsor = new Customer((int) $referralprogram->id_sponsor);
         }
 
-        foreach ($friends as $key => &$friend) {
+        foreach ($friends as &$friend) {
             $friend['orders_count'] = sizeof(Order::getCustomerOrders($friend['id_customer']));
             $friend['date_add'] = Tools::displayDate($friend['date_add'], null, true);
             $friend['sponsored_friend_count'] = sizeof(ReferralProgramModule::getSponsorFriend($friend['id_customer']));
