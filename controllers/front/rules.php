@@ -44,6 +44,7 @@ class ReferralprogramRulesModuleFrontController extends ModuleFrontController
     // @codingStandardsIgnoreEnd
 
     /**
+     * @throws PrestaShopException
      * @see FrontController::initContent()
      */
     public function initContent()

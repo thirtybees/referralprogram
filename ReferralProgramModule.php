@@ -65,10 +65,12 @@ class ReferralProgramModule extends ObjectModel
     /**
      * Return sponsored friends
      *
-     * @param int  $idCustomer
+     * @param int $idCustomer
      * @param bool $restriction
      *
      * @return array Sponsor
+     * @throws PrestaShopDatabaseException
+     * @throws PrestaShopException
      */
     public static function getSponsorFriend($idCustomer, $restriction = false)
     {
@@ -94,10 +96,12 @@ class ReferralProgramModule extends ObjectModel
     /**
      * Return if a customer is sponsored
      *
-     * @param int  $idCustomer
+     * @param int $idCustomer
      * @param bool $getId
      *
      * @return bool
+     * @throws PrestaShopDatabaseException
+     * @throws PrestaShopException
      */
     public static function isSponsorised($idCustomer, $getId = false)
     {
@@ -122,6 +126,7 @@ class ReferralProgramModule extends ObjectModel
      * @param int $idFriend
      *
      * @return bool
+     * @throws PrestaShopException
      */
     public static function isSponsorFriend($idSponsor, $idFriend)
     {
@@ -142,10 +147,12 @@ class ReferralProgramModule extends ObjectModel
      * Return if an email is already registered
      *
      * @param string $email
-     * @param bool   $getId
-     * @param bool   $checkCustomer
+     * @param bool $getId
+     * @param bool $checkCustomer
      *
      * @return false|int Referral program ID
+     * @throws PrestaShopDatabaseException
+     * @throws PrestaShopException
      */
     public static function isEmailExists($email, $getId = false, $checkCustomer = true)
     {
@@ -176,6 +183,7 @@ class ReferralProgramModule extends ObjectModel
      * @param int $idCurrency
      *
      * @return bool
+     * @throws PrestaShopException
      */
     public function registerDiscountForSponsor($idCurrency)
     {
@@ -189,11 +197,12 @@ class ReferralProgramModule extends ObjectModel
     /**
      * Register discount
      *
-     * @param int  $idCustomer
+     * @param int $idCustomer
      * @param bool $register
-     * @param int  $idCurrency
+     * @param int $idCurrency
      *
      * @return bool
+     * @throws PrestaShopException
      */
     public function registerDiscount($idCustomer, $register = false, $idCurrency = 0)
     {
@@ -254,6 +263,7 @@ class ReferralProgramModule extends ObjectModel
      * @param int $idCurrency
      *
      * @return bool
+     * @throws PrestaShopException
      */
     public function registerDiscountForSponsored($idCurrency)
     {

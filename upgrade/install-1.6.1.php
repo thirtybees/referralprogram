@@ -27,6 +27,10 @@ if (!defined('_TB_VERSION_')) {
     exit;
 }
 
+/**
+ * @throws PrestaShopException
+ * @throws HTMLPurifier_Exception
+ */
 function upgrade_module_1_6_1($object)
 {
     return Configuration::updateValue('REFERRAL_TAX', 1);

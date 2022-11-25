@@ -36,6 +36,7 @@ class ReferralprogramProgramModuleFrontController extends ModuleFrontController
 
     /**
      * Initialize the controller
+     * @throws PrestaShopException
      */
     public function init()
     {
@@ -55,6 +56,7 @@ class ReferralprogramProgramModuleFrontController extends ModuleFrontController
 
     /**
      * Set this controller's assets
+     * @throws PrestaShopException
      */
     public function setMedia()
     {
@@ -64,6 +66,7 @@ class ReferralprogramProgramModuleFrontController extends ModuleFrontController
     }
 
     /**
+     * @throws PrestaShopException
      * @see FrontController::initContent()
      */
     public function initContent()

@@ -42,6 +42,15 @@ class ReferralprogramEmailModuleFrontController extends ModuleFrontController
     // @codingStandardsIgnoreEnd
 
     /**
+     * @throws PrestaShopException
+     * @throws PrestaShopException
+     * @throws PrestaShopException
+     * @throws PrestaShopException
+     * @throws PrestaShopException
+     * @throws PrestaShopException
+     * @throws PrestaShopException
+     * @throws PrestaShopException
+     * @throws PrestaShopException
      * @see FrontController::initContent()
      */
     public function initContent()

@@ -43,6 +43,7 @@ class ReferralProgram extends Module
 
     /**
      * ReferralProgram constructor.
+     * @throws PrestaShopException
      */
     public function __construct()
     {
@@ -74,10 +75,11 @@ class ReferralProgram extends Module
      * Format discount
      *
      * @param float $value
-     * @param int   $type
-     * @param null  $currency
+     * @param int $type
+     * @param null $currency
      *
      * @return string
+     * @throws PrestaShopException
      */
     public static function formatDiscount($value, $type, $currency = null)
     {
@@ -97,6 +99,9 @@ class ReferralProgram extends Module
      * Reset the module
      *
      * @return bool
+     * @throws HTMLPurifier_Exception
+     * @throws PrestaShopDatabaseException
+     * @throws PrestaShopException
      */
     public function reset()
     {
@@ -116,6 +121,8 @@ class ReferralProgram extends Module
      * @param bool $deleteParams
      *
      * @return bool
+     * @throws PrestaShopDatabaseException
+     * @throws PrestaShopException
      */
     public function uninstall($deleteParams = true)
     {
@@ -149,6 +156,7 @@ class ReferralProgram extends Module
      * Drop database table
      *
      * @return bool
+     * @throws PrestaShopException
      */
     public function uninstallDB()
     {
@@ -159,6 +167,7 @@ class ReferralProgram extends Module
      * Remove mail templates
      *
      * @return bool
+     * @throws PrestaShopException
      */
     public function removeMail()
     {
@@ -183,6 +192,9 @@ class ReferralProgram extends Module
      * @param bool $deleteParams
      *
      * @return bool
+     * @throws HTMLPurifier_Exception
+     * @throws PrestaShopDatabaseException
+     * @throws PrestaShopException
      */
     public function install($deleteParams = true)
     {
@@ -236,6 +248,7 @@ class ReferralProgram extends Module
      * Install database table
      *
      * @return bool
+     * @throws PrestaShopException
      */
     public function installDB()
     {
@@ -258,6 +271,12 @@ class ReferralProgram extends Module
         );
     }
 
+    /**
+     * @throws SmartyException
+     * @throws PrestaShopDatabaseException
+     * @throws PrestaShopException
+     * @throws HTMLPurifier_Exception
+     */
     public function getContent()
     {
         $this->moduleHtml = '';
@@ -313,6 +332,9 @@ class ReferralProgram extends Module
      * Render form
      *
      * @return string
+     * @throws PrestaShopDatabaseException
+     * @throws PrestaShopException
+     * @throws SmartyException
      */
     public function renderForm()
     {
@@ -459,6 +481,8 @@ class ReferralProgram extends Module
      * Get configuration field values
      *
      * @return array
+     * @throws PrestaShopDatabaseException
+     * @throws PrestaShopException
      */
     public function getConfigFieldsValues()
     {
@@ -499,6 +523,8 @@ class ReferralProgram extends Module
      * Render javascript
      *
      * @return string
+     * @throws PrestaShopException
+     * @throws SmartyException
      */
     public function renderJs()
     {
@@ -512,6 +538,9 @@ class ReferralProgram extends Module
      * @param array $params
      *
      * @return bool|string
+     * @throws PrestaShopDatabaseException
+     * @throws PrestaShopException
+     * @throws SmartyException
      */
     public function hookShoppingCart($params)
     {
@@ -545,10 +574,11 @@ class ReferralProgram extends Module
      * Display discount
      *
      * @param mixed $discountValue
-     * @param int   $discountType
-     * @param bool  $currency
+     * @param int $discountType
+     * @param bool $currency
      *
      * @return string
+     * @throws PrestaShopException
      */
     public static function displayDiscount($discountValue, $discountType, $currency = false)
     {
@@ -564,6 +594,10 @@ class ReferralProgram extends Module
         return ''; // return a string because it's a display method
     }
 
+    /**
+     * @throws PrestaShopException
+     * @throws SmartyException
+     */
     public function hookDisplayMyAccountBlock()
     {
         return $this->hookCustomerAccount();
@@ -574,6 +608,8 @@ class ReferralProgram extends Module
      * Display an additional link on my-account and block my-account
      *
      * @return string
+     * @throws PrestaShopException
+     * @throws SmartyException
      */
     public function hookCustomerAccount()
     {
@@ -585,6 +621,9 @@ class ReferralProgram extends Module
      * Add an additional input on bottom for fill the sponsor's e-mail address
      *
      * @return string
+     * @throws PrestaShopDatabaseException
+     * @throws PrestaShopException
+     * @throws SmartyException
      */
     public function hookCreateAccountForm()
     {
@@ -619,6 +658,8 @@ class ReferralProgram extends Module
      * @param array $params
      *
      * @return bool
+     * @throws PrestaShopDatabaseException
+     * @throws PrestaShopException
      */
     public function hookCreateAccount($params)
     {
@@ -700,6 +741,9 @@ class ReferralProgram extends Module
      * @param array $params
      *
      * @return string
+     * @throws PrestaShopDatabaseException
+     * @throws PrestaShopException
+     * @throws SmartyException
      */
     public function hookAdminCustomers($params)
     {
@@ -746,6 +790,9 @@ class ReferralProgram extends Module
      * @param array $params
      *
      * @return bool|string
+     * @throws PrestaShopDatabaseException
+     * @throws PrestaShopException
+     * @throws SmartyException
      */
     public function hookOrderConfirmation($params)
     {
@@ -783,6 +830,8 @@ class ReferralProgram extends Module
      * @param array $params
      *
      * @return bool
+     * @throws PrestaShopDatabaseException
+     * @throws PrestaShopException
      */
     public function hookUpdateOrderStatus($params)
     {
@@ -858,6 +907,8 @@ class ReferralProgram extends Module
 
     /**
      * Post process
+     * @throws PrestaShopException
+     * @throws HTMLPurifier_Exception
      */
     protected function postProcess()
     {
@@ -879,6 +930,7 @@ class ReferralProgram extends Module
 
     /**
      * Write xml
+     * @throws PrestaShopException
      */
     protected function writeXml()
     {
