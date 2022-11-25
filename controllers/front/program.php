@@ -110,7 +110,9 @@ class ReferralprogramProgramModuleFrontController extends ModuleFrontController
                         $error = 'email invalid';
                     } elseif (empty($friendFirstName) || empty($friendLastName) && !Validate::isName($friendLastName) && !Validate::isName($friendFirstName)) {
                         $error = 'name invalid';
-                    } elseif (ReferralProgramModule::isEmailExists($friendEmail) && Customer::customerExists($friendEmail)) {
+                    } elseif (ReferralProgramModule::isEmailExists($friendEmail)) {
+                        $mailsExists[] = $friendEmail;
+                    } else if (Customer::customerExists($friendEmail)) {
                         $mailsExists[] = $friendEmail;
                     } else {
                         $referralprogram = new ReferralProgramModule();
