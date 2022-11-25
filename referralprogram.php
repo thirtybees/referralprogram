@@ -629,22 +629,27 @@ class ReferralProgram extends Module
     {
         include_once(dirname(__FILE__).'/ReferralProgramModule.php');
 
-        $cipherTool = Encryptor::getInstance();
-
-        $explodeResult = explode('|', $cipherTool->decrypt(Tools::getValue('sponsor')));
-        if ($explodeResult) {
-            $idReferralprogram = (int)$explodeResult[0];
-            $referralprogram = new ReferralProgramModule((int)$idReferralprogram);
-            if (Validate::isLoadedObject($referralprogram)) {
-                /* hack for display referralprogram information in form */
-                $_POST['customer_firstname'] = $referralprogram->firstname;
-                $_POST['firstname'] = $referralprogram->firstname;
-                $_POST['customer_lastname'] = $referralprogram->lastname;
-                $_POST['lastname'] = $referralprogram->lastname;
-                $_POST['email'] = $referralprogram->email;
-                $_POST['email_create'] = $referralprogram->email;
-                $sponsor = new Customer((int) $referralprogram->id_sponsor);
-                $_POST['referralprogram'] = $sponsor->email;
+        $encrypted = Tools::getValue('sponsor');
+        if ($encrypted) {
+            $cipherTool = Encryptor::getInstance();
+            $decrypted = $cipherTool->decrypt($encrypted);
+            if ($decrypted) {
+                $explodeResult = explode('|', $decrypted);
+                if ($explodeResult) {
+                    $idReferralprogram = (int)$explodeResult[0];
+                    $referralprogram = new ReferralProgramModule((int)$idReferralprogram);
+                    if (Validate::isLoadedObject($referralprogram)) {
+                        /* hack for display referralprogram information in form */
+                        $_POST['customer_firstname'] = $referralprogram->firstname;
+                        $_POST['firstname'] = $referralprogram->firstname;
+                        $_POST['customer_lastname'] = $referralprogram->lastname;
+                        $_POST['lastname'] = $referralprogram->lastname;
+                        $_POST['email'] = $referralprogram->email;
+                        $_POST['email_create'] = $referralprogram->email;
+                        $sponsor = new Customer((int)$referralprogram->id_sponsor);
+                        $_POST['referralprogram'] = $sponsor->email;
+                    }
+                }
             }
         }
 
