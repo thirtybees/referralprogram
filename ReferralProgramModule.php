@@ -157,7 +157,7 @@ class ReferralProgramModule extends ObjectModel
     public static function isEmailExists($email, $getId = false, $checkCustomer = true)
     {
         if (empty($email) || !Validate::isEmail($email)) {
-            die (Tools::displayError('The email address is invalid.'));
+            throw new PrestaShopException(Tools::displayError('The email address is invalid.'));
         }
 
         if ($checkCustomer === true && Customer::customerExists($email)) {
