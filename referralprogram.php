@@ -668,7 +668,7 @@ class ReferralProgram extends Module
             return false;
         }
         $postVars = $params['_POST'];
-        if (empty($postVars) || !isset($postVars['referralprogram']) || empty($postVars['referralprogram'])) {
+        if (empty($postVars) || empty($postVars['referralprogram'])) {
             return false;
         }
         $sponsorEmail = $postVars['referralprogram'];
@@ -751,7 +751,7 @@ class ReferralProgram extends Module
         $sponsor = null;
 
         if (!Validate::isLoadedObject($customer)) {
-            die ($this->l('Incorrect Customer object.'));
+            return '';
         }
 
         $friends = ReferralProgramModule::getSponsorFriend((int) $customer->id);
@@ -797,7 +797,7 @@ class ReferralProgram extends Module
     public function hookOrderConfirmation($params)
     {
         if ($params['objOrder'] && !Validate::isLoadedObject($params['objOrder'])) {
-            return die($this->l('Incorrect Order object.'));
+            return false;
         }
 
         include_once(dirname(__FILE__).'/ReferralProgramModule.php');
@@ -836,12 +836,12 @@ class ReferralProgram extends Module
     public function hookUpdateOrderStatus($params)
     {
         if (!Validate::isLoadedObject($params['newOrderStatus'])) {
-            die ($this->l('Missing parameters'));
+            return false;
         }
         $orderState = $params['newOrderStatus'];
         $order = new Order((int) ($params['id_order']));
-        if ($order && !Validate::isLoadedObject($order)) {
-            die($this->l('Incorrect Order object.'));
+        if (!Validate::isLoadedObject($order)) {
+            return false;
         }
 
         include_once(dirname(__FILE__).'/ReferralProgramModule.php');
