@@ -49,7 +49,7 @@ class ReferralProgram extends Module
     {
         $this->name = 'referralprogram';
         $this->tab = 'advertising_marketing';
-        $this->version = '2.0.4';
+        $this->version = '2.0.5';
         $this->author = 'thirty bees';
 
         $this->controllers = ['program'];
