@@ -67,7 +67,7 @@ class ReferralprogramEmailModuleFrontController extends ModuleFrontController
             die();
         }
 
-        $filePath = __DIR__.'/../../mails/'.strval(preg_replace('#\.{2,}#', '.', Tools::getValue('mail')));
+        $filePath = __DIR__.'/../../mails/'. preg_replace('#\.{2,}#', '.', (string)Tools::getValue('mail'));
 
         if (!file_exists($filePath)) {
             Tools::redirect('index.php');
