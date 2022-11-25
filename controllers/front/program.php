@@ -92,8 +92,6 @@ class ReferralprogramProgramModuleFrontController extends ModuleFrontController
             && Tools::getValue('friendsEmail')
             && sizeof($friendsEmail = Tools::getValue('friendsEmail')) >= 1
         ) {
-            $activeTab = 'sponsor';
-
             if (!Tools::getValue('conditionsValided')) {
                 $error = 'conditions not valided';
             } else {
