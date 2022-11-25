@@ -1,2 +1,6 @@
-.idea/
-*referralprogram*.zip
+.idea
+/translations/*
+!/translations/index.php
+config.xml
+config*.xml
+referralprogram-*.zip
