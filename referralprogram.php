@@ -53,7 +53,7 @@ class ReferralProgram extends Module
         $this->author = 'thirty bees';
 
         $this->controllers = ['program'];
-
+        $this->need_instance = true;
         $this->bootstrap = true;
         parent::__construct();
 
